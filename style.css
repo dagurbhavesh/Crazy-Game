@@ -1,0 +1,567 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at 50% 0%, #18206f, #050514 60%);
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    text-align: center;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+
+    margin: 18px 0 10px;
+
+    font-size: 38px;
+
+    color: #00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00eaff,
+        0 0 45px #008cff;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   GAME
+========================= */
+
+#game {
+
+    width: 700px;
+
+    height: 560px;
+
+    margin: 15px auto;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 4px solid #00eaff;
+
+    border-radius: 22px;
+
+    background-color: #07072d;
+
+    box-shadow:
+        0 0 20px #00eaff,
+        0 0 60px rgba(0, 234, 255, 0.35);
+
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+#game::before,
+#game::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 200%;
+
+    top: -100%;
+    left: 0;
+
+    pointer-events: none;
+
+    background-image:
+
+        radial-gradient(circle, white 1px, transparent 2px),
+        radial-gradient(circle, #80dfff 1px, transparent 2px),
+        radial-gradient(circle, white 1px, transparent 2px);
+
+    background-size:
+        90px 90px,
+        140px 140px,
+        190px 190px;
+
+    animation: starsMove 8s linear infinite;
+
+    opacity: 0.7;
+
+    z-index: 0;
+}
+
+
+#game::after {
+
+    animation-duration: 14s;
+
+    opacity: 0.35;
+
+    transform: rotate(180deg);
+}
+
+
+@keyframes starsMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(50%);
+    }
+
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+#hud {
+
+    position: absolute;
+
+    top: 15px;
+    left: 20px;
+    right: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    z-index: 10;
+}
+
+
+#hud div {
+
+    padding: 8px 12px;
+
+    border-radius: 10px;
+
+    background: rgba(0, 0, 0, 0.35);
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+#controls {
+
+    position: absolute;
+
+    top: 65px;
+
+    right: 20px;
+
+    color: #aaa;
+
+    font-size: 14px;
+
+    z-index: 10;
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+#player {
+
+    position: absolute;
+
+    width: 60px;
+    height: 70px;
+
+    left: 320px;
+
+    bottom: 20px;
+
+    z-index: 5;
+
+    transition: left 0.04s linear;
+
+    user-select: none;
+}
+
+
+.rocket {
+
+    font-size: 48px;
+
+    position: relative;
+
+    z-index: 2;
+
+    filter:
+        drop-shadow(0 0 8px #00eaff);
+}
+
+
+.flame {
+
+    position: absolute;
+
+    font-size: 22px;
+
+    left: 18px;
+
+    bottom: -5px;
+
+    animation: flame 0.15s infinite alternate;
+
+    z-index: 1;
+}
+
+
+@keyframes flame {
+
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1.2);
+    }
+
+}
+
+
+/* =========================
+   ENEMIES
+========================= */
+
+.enemy {
+
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    font-size: 42px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 4;
+
+    user-select: none;
+
+    filter:
+        drop-shadow(0 0 7px #ff3b6b);
+}
+
+
+/* =========================
+   COIN
+========================= */
+
+#coin {
+
+    position: absolute;
+
+    width: 45px;
+    height: 45px;
+
+    font-size: 36px;
+
+    z-index: 3;
+
+    user-select: none;
+
+    animation: coinSpin 0.7s infinite alternate;
+}
+
+
+@keyframes coinSpin {
+
+    from {
+        transform: rotateY(0deg) scale(0.9);
+    }
+
+    to {
+        transform: rotateY(180deg) scale(1.1);
+    }
+
+}
+
+
+/* =========================
+   SHIELD
+========================= */
+
+#shield {
+
+    position: absolute;
+
+    width: 50px;
+    height: 50px;
+
+    font-size: 38px;
+
+    z-index: 3;
+
+    display: none;
+
+    animation: shieldPulse 0.5s infinite alternate;
+}
+
+
+@keyframes shieldPulse {
+
+    from {
+        transform: scale(0.9);
+        filter: drop-shadow(0 0 5px #00eaff);
+    }
+
+    to {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 20px #00eaff);
+    }
+
+}
+
+
+/* =========================
+   SHIELD ACTIVE
+========================= */
+
+.shieldActive {
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px #00eaff,
+        0 0 30px #00eaff;
+}
+
+
+/* =========================
+   START + GAME OVER
+========================= */
+
+#startScreen,
+#gameOver {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(2, 2, 20, 0.82);
+
+    backdrop-filter: blur(5px);
+
+    z-index: 30;
+}
+
+
+#gameOver {
+
+    display: none;
+}
+
+
+.panel {
+
+    width: 80%;
+
+    max-width: 450px;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 20, 70, 0.95),
+            rgba(5, 5, 25, 0.95)
+        );
+
+    border: 2px solid #00eaff;
+
+    box-shadow:
+        0 0 25px #00eaff;
+}
+
+
+.panel h2 {
+
+    margin-top: 0;
+
+    color: #00eaff;
+
+    font-size: 32px;
+
+    text-shadow:
+        0 0 10px #00eaff;
+}
+
+
+.panel p {
+
+    color: #ddd;
+
+    line-height: 1.7;
+
+    font-size: 17px;
+}
+
+
+button {
+
+    margin-top: 15px;
+
+    padding: 14px 30px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #00eaff;
+
+    color: #001015;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 0 12px #00eaff;
+}
+
+
+button:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 25px #00eaff;
+}
+
+
+/* =========================
+   FINAL SCORE
+========================= */
+
+#finalScore {
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    color: #ffd700;
+
+    margin: 10px;
+}
+
+
+/* =========================
+   HIT EFFECT
+========================= */
+
+#hitEffect {
+
+    position: absolute;
+
+    font-size: 65px;
+
+    display: none;
+
+    z-index: 40;
+
+    pointer-events: none;
+
+    animation: explosion 0.4s ease-out;
+}
+
+
+@keyframes explosion {
+
+    from {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   TIP
+========================= */
+
+.tip {
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 750px) {
+
+    #game {
+
+        width: 95vw;
+
+        height: 70vh;
+
+    }
+
+
+    h1 {
+
+        font-size: 26px;
+
+    }
+
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Crazy Space Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>🚀 CRAZY SPACE 👾</h1>
+
+    <div id="game">
+
+        <!-- HUD -->
+        <div id="hud">
+
+            <div>
+                🏆 <span id="score">0</span>
+            </div>
+
+            <div>
+                ❤️ <span id="lives">3</span>
+            </div>
+
+            <div>
+                ⚡ LV <span id="level">1</span>
+            </div>
+
+            <div>
+                👑 <span id="highScore">0</span>
+            </div>
+
+        </div>
+
+
+        <!-- Control message -->
+        <div id="controls">
+            ⬅️ ➡️ / A D
+        </div>
+
+
+        <!-- Player -->
+        <div id="player">
+
+            <div class="flame">🔥</div>
+
+            <div class="rocket">
+                🚀
+            </div>
+
+        </div>
+
+
+        <!-- Enemies -->
+        <div class="enemy">👾</div>
+
+        <div class="enemy">👻</div>
+
+        <div class="enemy">🦇</div>
+
+
+        <!-- Coin -->
+        <div id="coin">
+            🪙
+        </div>
+
+
+        <!-- Shield -->
+        <div id="shield">
+            🛡️
+        </div>
+
+
+        <!-- Start Screen -->
+        <div id="startScreen">
+
+            <div class="panel">
+
+                <h2>🚀 CRAZY SPACE 🚀</h2>
+
+                <p>
+                    Survive the chaos!
+                </p>
+
+                <p>
+                    Dodge enemies 👾<br>
+                    Collect coins 🪙<br>
+                    Grab shields 🛡️
+                </p>
+
+                <button id="startButton">
+                    START GAME
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Game Over -->
+        <div id="gameOver">
+
+            <div class="panel">
+
+                <h2>💀 GAME OVER</h2>
+
+                <p>
+                    Your Score
+                </p>
+
+                <div id="finalScore">
+                    0
+                </div>
+
+                <p>
+                    Best Score:
+                    <span id="finalHighScore">
+                        0
+                    </span>
+                </p>
+
+                <button id="restartButton">
+                    🔄 PLAY AGAIN
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Hit effect -->
+        <div id="hitEffect">
+            💥
+        </div>
+
+    </div>
+
+
+    <p class="tip">
+        Survive as long as possible 😈
+    </p>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
